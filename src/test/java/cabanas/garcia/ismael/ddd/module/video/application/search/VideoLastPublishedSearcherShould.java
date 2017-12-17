@@ -21,14 +21,20 @@ public class VideoLastPublishedSearcherShould {
                 .withCategory(VideoCategoryStub.random())
                 .withPublishDateAt(REFERENCE_DATE_TIME)
                 .build();
+        Video theLastvideoPublished = VideoStub.builder().withId(VideoIdStub.random())
+                .withTitle(VideoTitleStub.random())
+                .withDuration(VideoDurationStub.random())
+                .withCategory(VideoCategoryStub.random())
+                .withPublishDateAt(REFERENCE_DATE_TIME.plusDays(2))
+                .build();
         VideoRepositorySuccessSearcherStub videoRepository =
-                new VideoRepositorySuccessSearcherStub(videoNotPublished, videoPublished);
+                new VideoRepositorySuccessSearcherStub(videoNotPublished, videoPublished, theLastvideoPublished);
         VideoLastPublishedSearcher videoSearcher = new VideoLastPublishedSearcher(videoRepository);
 
         Optional<Video> lastVideoPublished = videoSearcher.find();
 
         assertThat(lastVideoPublished).isNotEmpty();
-        assertThat(lastVideoPublished.get()).isEqualTo(videoPublished);
+        assertThat(lastVideoPublished.get()).isEqualTo(theLastvideoPublished);
     }
 
     @Test public void

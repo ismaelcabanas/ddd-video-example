@@ -1,6 +1,7 @@
 package cabanas.garcia.ismael.ddd.module.video.domain;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +26,6 @@ public class VideoRepositorySuccessSearcherStub implements VideoRepository{
     public Optional<Video> findLastPublished() {
         return Arrays.stream(videos)
                 .filter(video -> video.publishedDate() != null)
-                .findFirst();
+                .max(Comparator.comparing(Video::publishedDate));
     }
 }
