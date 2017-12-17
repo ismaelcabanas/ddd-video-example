@@ -3,6 +3,7 @@ package cabanas.garcia.ismael.ddd.module.video.domain;
 import org.mockito.Mockito;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
@@ -23,6 +24,11 @@ public class VideoRepositorySuccessCreateStub implements VideoRepository {
 
     @Override
     public List<Video> findAll() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Optional<Video> findLastPublished() {
         throw new UnsupportedOperationException();
     }
 

@@ -2,11 +2,12 @@ package cabanas.garcia.ismael.ddd.module.video.domain;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
-public class VideoRepositorySuccessAllSearcherStub implements VideoRepository{
+public class VideoRepositorySuccessSearcherStub implements VideoRepository{
     private final Video[] videos;
 
-    public VideoRepositorySuccessAllSearcherStub(Video... videos) {
+    public VideoRepositorySuccessSearcherStub(Video... videos) {
         this.videos = videos;
     }
 
@@ -18,5 +19,12 @@ public class VideoRepositorySuccessAllSearcherStub implements VideoRepository{
     @Override
     public List<Video> findAll() {
         return Arrays.asList(videos);
+    }
+
+    @Override
+    public Optional<Video> findLastPublished() {
+        return Arrays.stream(videos)
+                .filter(video -> video.publishedDate() != null)
+                .findFirst();
     }
 }
