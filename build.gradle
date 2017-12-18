@@ -1,20 +1,57 @@
 group 'cabanas.garcia.ismael.tdd'
 version '1.0-SNAPSHOT'
 
+buildscript {
+    ext {
+        springBootVersion = '1.4.5.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: "org.springframework.boot", name: "spring-boot-gradle-plugin", version: springBootVersion
+    }
+}
 
 apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
 
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
 }
 
+configurations {
+    integrationtestCompile.extendsFrom testCompile
+    integrationtestRuntime.extendsFrom testRuntime
+}
+
+sourceSets {
+    integrationtest {
+        java {
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+
+            // Use "java" if you don't use Scala as a programming language
+            srcDir file('src/integration-test/java')
+        }
+        resources.srcDir file('src/integration-test/resources')
+    }
+}
+
 dependencies {
+    // Spring dependencies
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+
     compile("org.apache.commons:commons-lang3:3.5")
 
     testCompile("junit:junit:4.12")
-    testCompile("pl.pragmatists:JUnitParams:1.1.0")
     testCompile("org.assertj:assertj-core:3.6.1")
     testCompile("org.mockito:mockito-core:1.10.19")
+
 }

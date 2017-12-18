@@ -1,8 +1,7 @@
-package cabanas.garcia.ismael.ddd.modules.video.infrastructure.repository;
+package cabanas.garcia.ismael.ddd.module.video.infrastructure;
 
 import cabanas.garcia.ismael.ddd.module.video.domain.Video;
 import cabanas.garcia.ismael.ddd.module.video.domain.VideoRepository;
-import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -27,6 +26,6 @@ public class InMemoryVideoRepository implements VideoRepository {
     public Optional<Video> findLastPublished() {
         return videos.stream()
                 .filter(video -> video.isPublished())
-                .max(Comparator.comparing(Video::publishingDate));
+                .max((o1, o2) -> o1.publishingDate().compareTo(o2.publishingDate()));
     }
 }

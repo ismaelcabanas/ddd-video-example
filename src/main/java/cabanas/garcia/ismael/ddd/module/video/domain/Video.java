@@ -14,6 +14,7 @@ public class Video {
         this.title = builder.title;
         this.duration = builder.duration;
         this.category = builder.category;
+        this.publishingDate = VideoPublishDate.EMPTY;
     }
 
     public VideoId id() {
