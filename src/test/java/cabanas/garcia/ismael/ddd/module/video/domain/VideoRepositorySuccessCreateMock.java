@@ -9,10 +9,10 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-public class VideoRepositorySuccessCreateStub implements VideoRepository {
+public class VideoRepositorySuccessCreateMock implements VideoRepository {
     private VideoRepository videoRepositoryMock;
 
-    public VideoRepositorySuccessCreateStub(Video video) {
+    public VideoRepositorySuccessCreateMock(Video video) {
         videoRepositoryMock = mock(VideoRepository.class);
         doNothing().when(videoRepositoryMock).save(video);
     }

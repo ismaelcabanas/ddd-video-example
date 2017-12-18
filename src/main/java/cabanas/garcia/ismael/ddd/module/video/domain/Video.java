@@ -9,14 +9,13 @@ public class Video {
     private final VideoTitle title;
     private final VideoDuration duration;
     private final VideoCategory category;
-    private final LocalDateTime publishedDate;
+    private LocalDateTime publishingDate;
 
     private Video(Builder builder) {
         this.id = builder.id;
         this.title = builder.title;
         this.duration = builder.duration;
         this.category = builder.category;
-        this.publishedDate = builder.publishedDate;
     }
 
     public VideoId id() {
@@ -36,7 +35,7 @@ public class Video {
     }
 
     public LocalDateTime publishedDate() {
-        return this.publishedDate;
+        return this.publishingDate;
     }
 
     public static Builder builder(VideoId id, VideoTitle title, VideoDuration duration, VideoCategory category) {
@@ -63,12 +62,15 @@ public class Video {
                 .toHashCode();
     }
 
+    public void publish(LocalDateTime publishingDate) {
+        this.publishingDate = publishingDate;
+    }
+
     public static class Builder {
         private final VideoId id;
         private final VideoTitle title;
         private final VideoDuration duration;
         private final VideoCategory category;
-        private LocalDateTime publishedDate;
 
         public Builder(VideoId id, VideoTitle title, VideoDuration duration, VideoCategory category) {
             this.id = id;
@@ -81,9 +83,5 @@ public class Video {
             return new Video(this);
         }
 
-        public Builder withVideoPublishDate(LocalDateTime publishedDate) {
-            this.publishedDate = publishedDate;
-            return this;
-        }
     }
 }

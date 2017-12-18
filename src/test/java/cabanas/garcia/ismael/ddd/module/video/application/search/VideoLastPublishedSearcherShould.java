@@ -4,6 +4,7 @@ import cabanas.garcia.ismael.ddd.module.video.domain.*;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,36 +15,26 @@ public class VideoLastPublishedSearcherShould {
 
     @Test public void
     find_last_published_video() {
-        Video videoNotPublished = VideoStub.random();
-        Video videoPublished = VideoStub.builder().withId(VideoIdStub.random())
-                .withTitle(VideoTitleStub.random())
-                .withDuration(VideoDurationStub.random())
-                .withCategory(VideoCategoryStub.random())
-                .withPublishDateAt(REFERENCE_DATE_TIME)
+        Video oneVideo = VideoStub.random();
+        oneVideo.publish(REFERENCE_DATE_TIME);
+        VideoRepositoryStub videoRepositoryStub = VideoRepositoryStub.builder()
+                .withLastPublishedVideo(oneVideo)
                 .build();
-        Video theLastvideoPublished = VideoStub.builder().withId(VideoIdStub.random())
-                .withTitle(VideoTitleStub.random())
-                .withDuration(VideoDurationStub.random())
-                .withCategory(VideoCategoryStub.random())
-                .withPublishDateAt(REFERENCE_DATE_TIME.plusDays(2))
-                .build();
-        VideoRepositorySuccessSearcherStub videoRepository =
-                new VideoRepositorySuccessSearcherStub(videoNotPublished, videoPublished, theLastvideoPublished);
-        VideoLastPublishedSearcher videoSearcher = new VideoLastPublishedSearcher(videoRepository);
+        VideoLastPublishedSearcher videoSearcher = new VideoLastPublishedSearcher(videoRepositoryStub);
 
         Optional<Video> lastVideoPublished = videoSearcher.find();
 
-        assertThat(lastVideoPublished).isNotEmpty();
-        assertThat(lastVideoPublished.get()).isEqualTo(theLastvideoPublished);
+        assertThat(lastVideoPublished)
+                .isNotEmpty()
+                .isEqualTo(Optional.ofNullable(oneVideo));
     }
 
     @Test public void
     return_empty_when_not_exist_published_videos() {
-        Video videoNotPublished = VideoStub.random();
-        Video anotherVideoNotPublished = VideoStub.random();
-        VideoRepositorySuccessSearcherStub videoRepository =
-                new VideoRepositorySuccessSearcherStub(videoNotPublished, anotherVideoNotPublished);
-        VideoLastPublishedSearcher videoSearcher = new VideoLastPublishedSearcher(videoRepository);
+        VideoRepositoryStub videoRepositoryStub = VideoRepositoryStub.builder()
+                .withoutPublishedVideos()
+                .build();
+        VideoLastPublishedSearcher videoSearcher = new VideoLastPublishedSearcher(videoRepositoryStub);
 
         Optional<Video> lastVideoPublished = videoSearcher.find();
 
