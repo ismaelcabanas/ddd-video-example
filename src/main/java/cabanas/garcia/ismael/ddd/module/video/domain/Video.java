@@ -2,14 +2,12 @@ package cabanas.garcia.ismael.ddd.module.video.domain;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import java.time.LocalDateTime;
-
 public class Video {
     private final VideoId id;
     private final VideoTitle title;
     private final VideoDuration duration;
     private final VideoCategory category;
-    private LocalDateTime publishingDate;
+    private VideoPublishDate publishingDate;
 
     private Video(Builder builder) {
         this.id = builder.id;
@@ -34,7 +32,7 @@ public class Video {
         return this.category;
     }
 
-    public LocalDateTime publishedDate() {
+    public VideoPublishDate publishingDate() {
         return this.publishingDate;
     }
 
@@ -62,8 +60,12 @@ public class Video {
                 .toHashCode();
     }
 
-    public void publish(LocalDateTime publishingDate) {
+    public void publish(VideoPublishDate publishingDate) {
         this.publishingDate = publishingDate;
+    }
+
+    public boolean isPublished() {
+        return !this.publishingDate.isEmpty();
     }
 
     public static class Builder {

@@ -3,7 +3,7 @@ package cabanas.garcia.ismael.ddd.module.video.domain;
 import java.util.List;
 import java.util.Optional;
 
-public class VideoRepositoryStub implements VideoRepository {
+public final class VideoRepositoryStub implements VideoRepository {
     private final List<Video> videos;
     private final Video lastPublishedVideo;
 

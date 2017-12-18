@@ -5,7 +5,7 @@ import cabanas.garcia.ismael.ddd.module.video.domain.VideoRepositorySuccessCreat
 import cabanas.garcia.ismael.ddd.module.video.domain.VideoStub;
 import org.junit.Test;
 
-public class VideoCreatorShould {
+public final class VideoCreatorShould {
 
     @Test public void
     save_video() {

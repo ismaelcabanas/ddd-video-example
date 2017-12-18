@@ -9,7 +9,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-public class VideoRepositorySuccessCreateMock implements VideoRepository {
+public final class VideoRepositorySuccessCreateMock implements VideoRepository {
     private VideoRepository videoRepositoryMock;
 
     public VideoRepositorySuccessCreateMock(Video video) {

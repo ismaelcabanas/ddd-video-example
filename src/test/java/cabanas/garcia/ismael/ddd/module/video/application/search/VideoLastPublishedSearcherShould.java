@@ -1,22 +1,19 @@
 package cabanas.garcia.ismael.ddd.module.video.application.search;
 
-import cabanas.garcia.ismael.ddd.module.video.domain.*;
+import cabanas.garcia.ismael.ddd.module.video.domain.Video;
+import cabanas.garcia.ismael.ddd.module.video.domain.VideoRepositoryStub;
+import cabanas.garcia.ismael.ddd.module.video.domain.VideoStub;
 import org.junit.Test;
 
-import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class VideoLastPublishedSearcherShould {
-
-    private final LocalDateTime REFERENCE_DATE_TIME = LocalDateTime.of(2016, 4, 1, 10, 0); //2016-04-01 at 10:00am
+public final class VideoLastPublishedSearcherShould {
 
     @Test public void
     find_last_published_video() {
         Video oneVideo = VideoStub.random();
-        oneVideo.publish(REFERENCE_DATE_TIME);
         VideoRepositoryStub videoRepositoryStub = VideoRepositoryStub.builder()
                 .withLastPublishedVideo(oneVideo)
                 .build();
@@ -26,7 +23,7 @@ public class VideoLastPublishedSearcherShould {
 
         assertThat(lastVideoPublished)
                 .isNotEmpty()
-                .isEqualTo(Optional.ofNullable(oneVideo));
+                .isEqualTo(Optional.of(oneVideo));
     }
 
     @Test public void
