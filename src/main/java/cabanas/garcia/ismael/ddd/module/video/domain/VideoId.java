@@ -6,4 +6,8 @@ public class VideoId {
     public VideoId(String value) {
         this.value = value;
     }
+
+    public String getValue() {
+        return this.value;
+    }
 }

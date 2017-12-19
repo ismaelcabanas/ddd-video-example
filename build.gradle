@@ -61,6 +61,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-actuator")
 
     compile("org.apache.commons:commons-lang3:3.5")
+    compile("javax.inject:javax.inject:1")
 
     testCompile("org.assertj:assertj-core:3.6.1")
     testCompile("org.springframework.boot:spring-boot-starter-test")

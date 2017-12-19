@@ -9,6 +9,10 @@ public class VideoDuration {
         this.value = value;
     }
 
+    public VideoDuration(long durationInSeconds) {
+        this.value = Duration.ofSeconds(durationInSeconds);
+    }
+
     public Duration getValue() {
         return value;
     }
