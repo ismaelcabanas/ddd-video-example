@@ -1,10 +1,10 @@
-package cabanas.garcia.ismael.ddd.modules.video.infrastructure.repository;
+package cabanas.garcia.ismael.ddd.module.video.infrastructure.repository;
 
 import cabanas.garcia.ismael.ddd.module.video.domain.Video;
 import cabanas.garcia.ismael.ddd.module.video.domain.VideoPublishDate;
 import cabanas.garcia.ismael.ddd.module.video.domain.VideoRepository;
 import cabanas.garcia.ismael.ddd.module.video.domain.VideoStub;
-import cabanas.garcia.ismael.ddd.module.video.infrastructure.InMemoryVideoRepository;
+import cabanas.garcia.ismael.ddd.module.video.infrastructure.framework.repository.InMemoryVideoRepository;
 import org.junit.Test;
 
 import java.time.LocalDateTime;

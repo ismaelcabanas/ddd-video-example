@@ -1,10 +1,9 @@
-package cabanas.garcia.ismael.ddd.module.video.infrastructure;
+package cabanas.garcia.ismael.ddd.module.video.infrastructure.framework.repository;
 
 import cabanas.garcia.ismael.ddd.module.video.domain.Video;
 import cabanas.garcia.ismael.ddd.module.video.domain.VideoRepository;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
