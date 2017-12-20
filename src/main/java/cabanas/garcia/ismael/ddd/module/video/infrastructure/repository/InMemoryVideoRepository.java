@@ -1,4 +1,4 @@
-package cabanas.garcia.ismael.ddd.module.video.infrastructure.framework.repository;
+package cabanas.garcia.ismael.ddd.module.video.infrastructure.repository;
 
 import cabanas.garcia.ismael.ddd.module.video.domain.Video;
 import cabanas.garcia.ismael.ddd.module.video.domain.VideoRepository;

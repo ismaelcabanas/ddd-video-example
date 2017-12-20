@@ -4,7 +4,6 @@ import cabanas.garcia.ismael.ddd.module.video.domain.Video;
 import cabanas.garcia.ismael.ddd.module.video.domain.VideoPublishDate;
 import cabanas.garcia.ismael.ddd.module.video.domain.VideoRepository;
 import cabanas.garcia.ismael.ddd.module.video.domain.VideoStub;
-import cabanas.garcia.ismael.ddd.module.video.infrastructure.framework.repository.InMemoryVideoRepository;
 import org.junit.Test;
 
 import java.time.LocalDateTime;

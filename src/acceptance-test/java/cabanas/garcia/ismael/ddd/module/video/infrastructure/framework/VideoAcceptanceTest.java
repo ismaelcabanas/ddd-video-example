@@ -5,6 +5,7 @@ import cabanas.garcia.ismael.ddd.module.video.domain.VideoCategoryStub;
 import cabanas.garcia.ismael.ddd.module.video.domain.VideoDurationStub;
 import cabanas.garcia.ismael.ddd.module.video.domain.VideoIdStub;
 import cabanas.garcia.ismael.ddd.module.video.domain.VideoTitleStub;
+import cabanas.garcia.ismael.ddd.module.video.infrastructure.framework.controller.response.VideoResponseDTO;
 import io.restassured.http.ContentType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
@@ -30,7 +32,7 @@ public class VideoAcceptanceTest {
     private int port;
 
     @Test public void
-    create_video_when_post() {
+    create_video() {
         Map<String, Object> videoData = new HashMap<>();
         videoData.put(ID, VideoIdStub.random().getValue());
         videoData.put(TITLE, VideoTitleStub.random().getValue());
@@ -49,4 +51,24 @@ public class VideoAcceptanceTest {
             .statusCode(201)
             .contentType(ContentType.JSON);
     }
+/*
+    @Test public void
+    find_all_videos() {
+
+        List<VideoResponseDTO> response =
+            given()
+                .port(port)
+                .basePath("/videos")
+                .log().everything()
+                .contentType(ContentType.JSON)
+            .when()
+                .get()
+                .then()
+                .statusCode(200)
+                .contentType(ContentType.JSON)
+                .extract()
+                .as(List.class);
+
+    }
+*/
 }
